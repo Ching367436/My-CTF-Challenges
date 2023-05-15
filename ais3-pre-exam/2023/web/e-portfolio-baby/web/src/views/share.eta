@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Share</title>
+    <%~ includeFile('partial/head', it) %>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-3">Edit Portfolio</h1>
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <h3 class="mb-3 mt-3">Photo</h3>
+                <img src="avatars/AIS3logo.png" class="img-fluid" id="avatar" style="width: 15rem;">
+            </div>
+            <div class="col-sm-9">
+                <h3 class="mb-3 mt-3">About <span id="username">User</span></h3>
+                <div id="about"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <script nonce="<%= it.nonce %>">
+            fetch(`/api/share${location.search}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        username.innerHTML = data.data.username
+                        about.innerHTML = data.data.about
+                        avatar.src = data.data.avatar
+                    } else {
+                        alert(data.message)
+                    }
+                })
+        </script>
+
+</body>
+
+</html>

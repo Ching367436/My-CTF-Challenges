@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "eta": "^2.0.1",
+    "express": "^4.18.2",
+    "express-recaptcha": "^5.1.0",
+    "express-session": "^1.17.3",
+    "sqlite3": "^5.1.6"
+  }
+}

@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  web:
+    build: ./web
+    restart: always
+    environment:
+      - BOT_HOST=bot
+      - BOT_PORT=7777
+      - HOST=web:8000
+    ports:
+      - 8880:8000
+  bot:
+    build: bot
+    environment:
+      - FLAG=AIS3{}
+      - SITE=http://web:8000
+      - ADMIN_USERNAME=ching367436_
+      - REPORT_HOST=web
+      - BOT_PORT=7777
+    restart: always

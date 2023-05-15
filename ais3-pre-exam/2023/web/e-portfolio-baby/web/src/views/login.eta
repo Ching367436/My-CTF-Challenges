@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login / Register</title>
+    <%~ includeFile('partial/head', it) %>
+</head>
+
+<body>
+    <div class="container mt-5 border rounded bg-light" style="width: 25rem;">
+        <div class="p-3">
+            <h2 class="mb-4 mt-3">Login / Register</h2>
+            <div class="form-group mb-3">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" autofocus>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 mb-3" id="login">Go</button>
+        </div>
+    </div>
+
+    <script nonce="<%= it.nonce %>">
+        login.addEventListener('click', () => {
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username.value,
+                    password: password.value
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success)
+                        location = '/portfolio'
+                    else
+                        alert(data.message)
+                })
+        })
+
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter')
+                login.click()
+        })
+
+    </script>
+
+</body>
+
+</html>

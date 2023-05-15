@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Edit Portfolio</title>
+    <script src="https://www.google.com/recaptcha/api.js?trustedtypes=true" async defer></script>
+    <%~ includeFile('partial/head', it) %>
+</head>
+
+<body>
+    <div class="container-sm mt-5">
+        <h1 class="mb-3">Edit Portfolio</h1>
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <h3 class="mb-3 mt-3">Photo</h3>
+                <img src="avatars/AIS3logo.png" class="img-fluid" id="avatar" style="width: 15rem;">
+
+                <div class="mt-3 mb-3">
+                    <label class="form-label" for="avatarFile">Upload avatar</label>
+                    <input type="file" class="form-control" id="avatarFile">
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <h3 class="mt-3">About <span id="username">User</span></h3>
+                <textarea name="" id="about" class="form-control" rows="10"></textarea>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <button type="submit" class="btn btn-primary mb-2" id="save">Save</button>
+            <button type="submit" class="btn btn-primary mb-2" id="logout">Logout</button>
+            <button type="submit" class="btn btn-primary mb-2" id="share">Share</button>
+            <button type="submit" class="btn btn-primary mb-2" id="report">Share your portfolio with admin</button>
+            <div class="g-recaptcha" data-sitekey="<%= it.RECAPTCHA_SITE_KEY %>" data-callback="onReport"
+                data-size="invisible"></div>
+        </div>
+    </div>
+
+    <script nonce="<%= it.nonce %>">
+        const init = () => {
+            fetch('/api/portfolio')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        username.innerText = data.data.username
+                        about.value = data.data.about
+                        avatar.src = data.data.avatar
+                    } else {
+                        alert(data.message)
+                    }
+                })
+        }
+        init()
+        avatarFile.addEventListener('change', () => {
+            const file = avatarFile.files[0]
+            if (file) {
+                avatar.src = URL.createObjectURL(file)
+            }
+        })
+        save.addEventListener('click', () => {
+            const formData = new FormData()
+            formData.append('about', about.value)
+            if (avatarFile.files.length > 0)
+                formData.append('avatar', avatarFile.files[0])
+            fetch('/api/portfolio', {
+                method: 'PUT',
+                body: formData
+            })
+                .then(res => {
+                    if (res.status === 413)
+                        return { success: false, message: 'File too large' }
+                    return res.json()
+                })
+                .then(data => {
+                    if (data.success) {
+                        init()
+                        alert('Saved!')
+                    } else
+                        alert(data.message)
+                })
+        })
+        share.addEventListener('click', () => {
+            location = `/share?username=${username.innerText}`
+        })
+        function onReport(token) {
+            const url = new URL(`/share?username=${username.innerText}`, location)
+            fetch('/api/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url.href, 'g-recaptcha-response': token }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success)
+                        alert('Request sent!')
+                    else
+                        alert(data.message)
+                    grecaptcha.reset();
+                })
+        }
+        report.addEventListener('click', () => {
+            grecaptcha.execute()
+        })
+        logout.addEventListener('click', () => {
+            fetch('/api/logout', {
+                method: 'POST'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success)
+                        location = '/'
+                    else
+                        alert(data.message)
+                })
+        })
+    </script>
+
+</body>
+
+</html>
