@@ -5,4 +5,4 @@
   - Pre-exam: 21 / 256 (score >= 100)
 
 ## Solution
-還不能公開。
+https://ching367436.github.io/ais3-pre-exam-2023-write-up/#Crypto
