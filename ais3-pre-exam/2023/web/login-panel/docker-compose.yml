@@ -5,6 +5,7 @@ services:
       context: ./web
     environment:
       - PORT=8000
+      - FLAG=AIS3{}
     restart: always
     ports:
       - "8000:8000"
