@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+    environment:
+      - PORT=36743
+      - FLAG=TSC{e697a9e5ae89efbc81e69c89e4babae69c83e68a8ae98099e5808be69db1e8a5bfe8a7a3e9968be4be86e79c8be5978eefbc9fe79c8be8b5b7e4be86e5a5bde5838fe69c89efbc81efbc81}
+    ports:
+      - "36743:36743"

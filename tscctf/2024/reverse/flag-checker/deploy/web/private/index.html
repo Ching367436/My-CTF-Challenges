@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js" integrity="sha256-kuoM7/Z00lbaqHRO9Vpa95aaMzlSTZiJIIvK46igrug=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css" integrity="sha256-VJuwjrIWHWsPSEvQV4DiPfnZi7axOaiWwKfXaJnR5tA=" crossorigin="anonymous">
+    <title>Flag Checker</title>
+    <script src="a.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <main id="app">
+        <article>
+            <label for="flag">
+                <h3>Check your flag</h3>
+                <input type="text" id="flag" name="flag" placeholder="flag" v-model="flag">
+                <input type="hidden" id="c8763" name="c8763" placeholder="c8763">
+            </label>
+            <button type="submit" @click="checkFlag">{{ buttonMessage }}</button>
+        </article>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
