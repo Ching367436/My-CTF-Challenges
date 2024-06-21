@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./web
+    environment:
+      - PORT=36363
+    ports:
+      - "36363:36363"
+    read_only: true
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G

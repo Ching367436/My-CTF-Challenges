@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex,nofollow" />
+        <script
+            src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"
+            integrity="sha256-kuoM7/Z00lbaqHRO9Vpa95aaMzlSTZiJIIvK46igrug="
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+            integrity="sha256-VJuwjrIWHWsPSEvQV4DiPfnZi7axOaiWwKfXaJnR5tA="
+            crossorigin="anonymous"
+        />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' https://*.ching367436.me https://*.clarity.ms https://c.bing.com; script-src 'self' 'unsafe-inline' https://*.ching367436.me https://*.clarity.ms https://c.bing.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com/ https://unpkg.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://*.clarity.ms https://c.bing.com https://cdn.jsdelivr.net/ https://www.googletagmanager.com; font-src 'self' https://cdn.jsdelivr.net;"
+        />
+        <title>Flag Checker</title>
+        <script type="text/javascript">
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "gsfl4ftdey");
+        </script>
+    </head>
+    <body>
+        <main id="app">
+            <article>
+                <label for="flag">
+                    <h3>Check your flag</h3>
+                    <input
+                        type="text"
+                        id="flag"
+                        name="flag"
+                        placeholder="flag"
+                        v-model="flag"
+                    />
+                </label>
+                <button type="submit" @click="checkFlag" id="checkFlag">
+                    {{ buttonMessage }}
+                </button>
+            </article>
+        </main>
+        <script src="dope.js"></script>
+    </body>
+</html>

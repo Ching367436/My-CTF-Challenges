@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+    environment:
+      - PORT=36743
+      - FLAG=AIS3{Yet_An0th3r_l0gin_pan3l_c2hbKnXIa_c!!!!!}
+    ports:
+      - "36743:36743"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
