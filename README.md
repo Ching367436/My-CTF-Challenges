@@ -1,5 +1,12 @@
 # My CTF Challenges
 ## AIS3 Pre-exam
+### 2024
+
+| Challenge                                                    | Category  | Keywords               |
+| ------------------------------------------------------------ | --------- | ---------------------- |
+| [Login Panel Revenge Revenge](ais3-pre-exam/2024/web/login-panel-revenge-revenge) | Web       | 2FA bypass             |
+| [FUWAMOCO](ais3-pre-exam/2024/rev/javascript-flag-checker/)  | Rev / Web | JavaScript obfuscation |
+
 ### 2023
 
 | Challenge                                                   | Category | Keywords                                          |
@@ -8,13 +15,6 @@
 | [Login Panel](ais3-pre-exam/2023/web/login-panel)           | Web      | SQLi, 2FA bypass                                  |
 | [E-Portfolio](ais3-pre-exam/2023/web/e-portfolio)           | Web      | XSS, CSP bypass                                   |
 | [2DES](ais3-pre-exam/2023/crypto/2des)                      | Crypto   | Meet-in-the-middle attack, DES key transformation |
-
-### 2024
-
-| Challenge                                                    | Category  | Keywords               |
-| ------------------------------------------------------------ | --------- | ---------------------- |
-| [Login Panel Revenge Revenge](ais3-pre-exam/2024/web/login-panel-revenge-revenge) | Web       | 2FA bypass             |
-| [FUWAMOCO](ais3-pre-exam/2024/rev/javascript-flag-checker/)  | Rev / Web | JavaScript obfuscation |
 
 ## TSCCTF
 
