@@ -55,3 +55,12 @@ We now have the Django database, so the final step is to extract the 2FA code fr
 
 See [exp/exp.py](exp/exp.py) for the complete exploit script.
 
+## Unintended Solution
+
+We can retrieve all the `sessionid` values from `/loginPanel/db.sqlite3`. If someone has already passed the 2FA, using their `sessionid` can also log in as an admin.
+
+`Whale120` and `Ianiiaannn` solved it using this method. Check out their write-ups:
+
+- [Whale120's write-up](https://wha13.github.io/2024/06/29/ais3-pre-exam-2024/#Login-Panel-Revenge-Revenge)
+
+- [Ianiiaannn's write-up](https://iancmd.dev/posts/ctf/ais3-2024-pre-exam/#login-panel-revenge-revenge)
