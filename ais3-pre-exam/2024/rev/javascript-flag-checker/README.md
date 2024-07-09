@@ -26,7 +26,7 @@ We can find that the script loads https://cdn.jsdelivr.net/npm/disable-devtool f
 
 ![http-history](./images/http-history.png)
 
-If we open the developer tools again, we will be paused by a breakpoint. If we inspect the call stack, we see that the `_0x2a8683` function at line 86526 cause this. Commenting it out will resolve the issue.
+If we open the developer tools again, execution will be paused by a breakpoint. If we inspect the call stack, we see that the `_0x2a8683` function at line 86526 is the cause. Commenting it out will resolve the issue.
 
 ![pause-stack](./images/pause-stack.png)
 
