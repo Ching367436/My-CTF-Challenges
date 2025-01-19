@@ -1,0 +1,31 @@
+services:
+  cms:
+    build: ./cms
+    ports:
+      - "36369:80"
+    # volumes:
+    #   - ./cms/html:/var/www/html
+    environment:
+      - BOT_HOST=bot
+      - BOT_PORT=7777
+    networks:
+      - no-internet
+      - internet
+  bot:
+    build: bot
+    environment:
+      - FLAG=TSC{Nyan~~; Nyan? Nyan!}
+      - SITE=http://cms:80
+      - ADMIN_USERNAME=ching367436_
+      - REPORT_HOST=cms
+      - BOT_PORT=7777
+    networks:
+      - no-internet
+networks:
+  no-internet:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
+
+ 

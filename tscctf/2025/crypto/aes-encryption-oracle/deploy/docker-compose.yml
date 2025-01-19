@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  aes-encryption-oracle:
+    build: ./
+    volumes:
+      - ./share:/home/kon:ro
+      - ./xinetd:/etc/xinetd.d/kon:ro
+    ports:
+      - "36363:36363"

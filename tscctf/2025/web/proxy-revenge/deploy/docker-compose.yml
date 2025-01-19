@@ -1,0 +1,9 @@
+services:
+  proxy_revenge:
+    build: .
+    ports:
+      - "36360:80"
+    volumes:
+      - ./index.php:/var/www/html/index.php:ro
+    environment:
+      - FLAG=TSC{C0de_St0l3n_1s_C0de_Earn3d}

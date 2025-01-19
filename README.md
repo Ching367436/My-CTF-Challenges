@@ -18,6 +18,15 @@
 
 ## TSCCTF
 
+### 2025
+
+| Challenge                                                    | Category | Keywords                                   |
+| ------------------------------------------------------------ | -------- | ------------------------------------------ |
+| [Proxy Revenge](tscctf/2025/web/proxy-revenge)   | Web      | SSRF, idn_to_ascii, domain takeover |
+| [Fakebook Pro](tscctf/2025/web/fakebook-pro)             | Web  | XSS, encoding, cookie                    |
+| [Fakebook Ultra](tscctf/2025/web/fakebook-ultra)             | Web  | XSS, CSP                    |
+| [AES Encryption Oracle](tscctf/2025/crypto/aes-encryption-oracle)                    | Crypto   | CBC                                 |
+
 ### 2024
 
 | Challenge                                                    | Category | Keywords                                   |
