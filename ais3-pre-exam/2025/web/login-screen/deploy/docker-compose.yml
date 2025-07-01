@@ -1,0 +1,17 @@
+services:
+  cms:
+    build: ./cms
+    ports:
+      - "36368:80"
+    volumes:
+      - ./cms/html/2fa.php:/var/www/html/2fa.php:ro
+      - ./cms/html/dashboard.php:/var/www/html/dashboard.php:ro
+      - ./cms/html/index.php:/var/www/html/index.php:ro
+      - ./cms/html/init.php:/var/www/html/init.php:ro
+      - ./cms/html/logout.php:/var/www/html/logout.php:ro
+      - ./cms/html/users.db:/var/www/html/users.db:ro
+      - ./cms/html/styles.css:/var/www/html/styles.css:ro
+    environment:
+      - FLAG1=AIS3{1.Es55y_SQL_1nJ3ct10n_w1th_2fa_IuABDADGeP0}
+      - FLAG2=AIS3{2.Nyan_Nyan_File_upload_jWvuUeUyyKU}
+    restart: always

@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(59, 35, 0);
+}
+
+.container {
+    background-color: rgb(252, 240, 214);
+    width: 100%;
+    max-width: 444px;
+    padding: 40px 30px;
+}
+
+.container, form .input_box input, form button, form .input_box textarea, .big_button, .big_button, .box {
+    border-radius: 7.5px;
+    border-color: black;
+    border-width: 2.5px;
+    border-style: solid;
+}
+
+.container h2, .container h3 {
+    text-align: center;
+    font-size: 25px;
+    padding: 0 0 10px;
+}
+
+form .input_box {
+    position: relative;
+    margin: 25px 0;
+}
+
+form .input_box label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+form .input_box input {
+    height: 57px;
+    font-weight: 600;
+}
+
+form .input_box input, form .input_box textarea, .box {
+    width: 100%;
+    background: #F8F8FB;
+    font-size: 17px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+    transition: 0.2s ease;
+}
+
+form .input_box textarea {
+    padding: 10px 20px;
+    height: 10rem;
+    font-weight: 600;
+}
+
+.box {
+    padding: 10px 20px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.box .post {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    /* wrap text */
+    word-wrap: break-word; 
+}
+
+a {
+    text-decoration: none;
+    padding: 10px 10px;
+}
+
+.big_button {
+    text-align: center;
+    color: rgb(59, 35, 0);
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    width: 100%;
+    height: 56px;
+    background: #ffd754;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+.big_button2 {
+    text-align: center;
+    color: rgb(0, 41, 59);
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    width: 100%;
+    height: 56px;
+    background: #ffd754;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    background: #ffc400;
+}

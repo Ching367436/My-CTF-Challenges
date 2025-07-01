@@ -1,0 +1,216 @@
+### Endpoints
+#### For Everyone
+- [x] index.php: Announcement List
+- [x] post.php?id=<id>: View specific post
+
+#### For Admins
+- [x] admin/login.php
+- [x] admin/logout.php
+- [x] admin/info.php
+- [x] admin/settings.php
+
+- [x] admin/posts.php
+- [x] admin/createPost.php
+- [x] admin/editPost.php?id=<id>
+- [x] admin/deletePost.php?id=<id>
+
+
+### Database
+#### Schema
+Does not have any time to implement, so I used serialzation and save to /usr/local/tomcat/db/db.ser instead :p
+```sh
+# to compile the java files
+docker exec -it java-webapp javac -classpath /usr/local/tomcat/lib/servlet-api.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/Database.java
+```
+```java
+public class Post implements Serializable {
+    public int id;
+    public String date;
+    public int views;
+    public String author;
+    public String[] files;
+    public String title;
+    public String content;
+
+    public Post(int id, String date, int views, String author, String[] files, String title, String content) {
+        this.id = id;
+        this.date = date;
+        this.views = views;
+        this.author = author;
+        this.files = files;
+        this.title = title;
+        this.content = content;
+    }
+
+    public void printPost() {
+        System.out.println("Post ID: " + id);
+        System.out.println("Date: " + date);
+        System.out.println("Views: " + views);
+        System.out.println("Author: " + author);
+        System.out.println("Files: " + files);
+        System.out.println("Title: " + title);
+        System.out.println("Content: " + content);
+    }
+}
+```
+```java
+package myclasses;
+import java.io.*;
+import java.util.LinkedList;
+
+public class Database implements Serializable {
+    public class Post implements Serializable {
+        public int id;
+        public String date;
+        public int views;
+        public String author;
+        public String[] files;
+        public String title;
+        public String content;
+        public Post(int id, String date, int views, String author, String[] files, String title, String content) {
+            this.id = id;
+            this.date = date;
+            this.views = views;
+            this.author = author;
+            this.files = files;
+            this.title = title;
+            this.content = content;
+        }
+    
+        public void printPost() {
+            System.out.println("Post ID: " + id);
+            System.out.println("Date: " + date);
+            System.out.println("Views: " + views);
+            System.out.println("Author: " + author);
+            System.out.println("Files: " + files);
+            System.out.println("Title: " + title);
+            System.out.println("Content: " + content);
+        }
+    }
+    public LinkedList<Post> posts = new LinkedList<Post>();
+    
+    // add post
+    public void addPost(int id, String date, int views, String author, String[] files, String title, String content) {
+        posts.add(new Post(id, date, views, author, files, title, content));
+    }
+}
+```
+
+
+### web.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd"
+  version="6.1"
+  metadata-complete="true">
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>
+
+<servlet>
+   <servlet-name>ChangePassword</servlet-name>
+   <servlet-class>ChangePassword</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>ChangePassword</servlet-name>
+   <url-pattern>/admin/ChangePassword</url-pattern>
+</servlet-mapping>
+</web-app>
+```
+
+```sh
+# to compile the java files
+docker exec -it java-webapp javac -classpath /usr/local/tomcat/lib/servlet-api.jar /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/ChangePassword.java
+```
+```java
+// Import required java libraries
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+
+// Extend HttpServlet class
+public class ChangePassword extends HttpServlet {
+ 
+   private String password;
+
+   public void init() throws ServletException {
+      // Do required initialization
+   }
+
+   // Calculate sha256 using built-in bash command, will save the temp password
+   public static String sha256(String password) {
+      try {
+        String[] cmd = {
+          "/bin/bash",
+          "-c",
+          "echo -n '" + password + "' | sha256sum"
+        };
+        Process p = Runtime.getRuntime().exec(cmd);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        return reader.readLine().split(" ")[0];
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return null;
+    }
+
+   public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+      // Set response content type
+      response.setContentType("text/html");
+
+      // Redirect to https://youtu.be/tyneiz9FRMw
+      response.sendRedirect("https://youtu.be/tyneiz9FRMw");
+   }
+
+   public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+      
+      // Set response content type
+      response.setContentType("text/html");
+
+      // Set message to the message parameter if it is not null.
+      if (request.getParameter("newPassword") != null) {
+         password = request.getParameter("newPassword");
+      }
+
+      // if Password contains `'` redirect to https://youtu.be/_NC_pqMt5rY
+      if (password.contains("'")) {
+         response.sendRedirect("https://youtu.be/_NC_pqMt5rY");
+         return;
+      }
+
+      // Calculate sha256 of the password
+      // Note that this function is very expensive since it uses syscalls, so we sleep for 100ms to prevent DoS
+      try {
+         Thread.sleep(100);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      String hashedPassword = sha256(password);
+
+      // Save the hashed password to `/usr/local/tomcat/db/password.txt`
+      try {
+         FileWriter myWriter = new FileWriter("/usr/local/tomcat/db/password.txt");
+         myWriter.write(hashedPassword);
+         myWriter.close();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+      response.sendRedirect("settings.php?msg=Password+changed+successfully");
+   }
+
+   public void destroy() {
+      // do nothing.
+   }
+}
+```

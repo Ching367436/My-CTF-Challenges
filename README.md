@@ -1,5 +1,12 @@
 # My CTF Challenges
 ## AIS3 Pre-exam
+### 2025
+
+| Challenge                                           | Category | Keywords                             |
+| --------------------------------------------------- | -------- | ------------------------------------ |
+| [Login Screen](ais3-pre-exam/2025/web/login-screen) | Web      | 2FA bypass, Info leak, SQL injection |
+| [Board Board](ais3-pre-exam/2025/web/board-board/)  | Web      | Command injection, race condition    |
+
 ### 2024
 
 | Challenge                                                    | Category  | Keywords               |

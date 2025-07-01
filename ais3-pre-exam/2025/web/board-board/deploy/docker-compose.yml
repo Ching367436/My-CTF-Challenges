@@ -1,0 +1,23 @@
+services:
+  web:
+    build: ./web
+    image: board-board-web
+    volumes:
+      - ./web/flag:/flag:ro
+      - ./web/db/password.txt:/usr/local/tomcat/db/password.txt
+    #   - ./web/webapps:/usr/local/tomcat/webapps
+    #   - ./web/conf:/usr/local/tomcat/conf
+    #   - ./web/db:/usr/local/tomcat/db
+    ports:
+      - ${PORT0}:8080
+    # read_only: true
+    tmpfs:
+      - /tmp
+      - /usr/local/tomcat/work/Catalina/
+      - /usr/local/tomcat/logs/
+
+networks:
+  default:
+    ipam:
+      config:
+      - subnet: ${SUBNET0}
